@@ -52,3 +52,12 @@ cat post_deploy.sh
 If you get a ```response: true``` the wasm was installed correctly.
 
 Once the job completes, your application will be available at `http://localhost:8000?canisterId={asset_canister_id}`.
+
+### Possible errors
+
+> sh: 1: webpack: not found
+
+```bash
+npm install --save-dev webpack
+
+```
