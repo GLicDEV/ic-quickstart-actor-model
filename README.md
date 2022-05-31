@@ -34,4 +34,21 @@ dfx start --background
 dfx deploy
 ```
 
+After the canister is deployed, we need to load the canister's WASM binary so that the canister can spawn new canisters. Depending on your dfx settings and previous projects ran, you might need to alter a canister_id in this step.
+
+```
+# go to the wasm_loader folder
+cd src/wasm_loader
+
+chmod +x post_deploy.sh
+
+cat post_deploy.sh
+
+# check that the 2'nd parameter, the canister_id matches the canister_id from the output of "dfx deploy" in a previous step. If they don't match, edit this file, and continue
+
+./post_deploy.sh
+```
+
+If you get a ```response: true``` the wasm was installed correctly.
+
 Once the job completes, your application will be available at `http://localhost:8000?canisterId={asset_canister_id}`.
