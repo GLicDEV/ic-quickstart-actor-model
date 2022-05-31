@@ -428,7 +428,7 @@ async fn call_canister_create(self_canister_id: Principal) -> Principal {
 
     // Add your own principal as a controller, in case manual control is needed
     let create_args = CreateCanisterArgs {
-        cycles: 100_000_000_000,
+        cycles: 1_000_000_000_000,
         settings: CreateCanisterSettings {
             controllers: Some(vec![self_canister_id]),
             compute_allocation: None,
