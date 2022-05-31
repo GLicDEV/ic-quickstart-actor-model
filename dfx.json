@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "dfx": "0.9.3",
+  "canisters": {
+    "ic_quickstart_actor_model": {
+      "type": "rust",
+      "package": "ic_quickstart_actor_model",
+      "candid": "src/ic_quickstart_actor_model/ic_quickstart_actor_model.did"
+    },
+    "ic_quickstart_actor_model_frontend": {
+      "dependencies": [
+        "ic_quickstart_actor_model"
+      ],
+      "frontend": {
+        "entrypoint": "src/ic_quickstart_actor_model_frontend/src/index.html"
+      },
+      "source": [
+        "src/ic_quickstart_actor_model_frontend/assets",
+        "dist/ic_quickstart_actor_model_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "",
+      "args": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  }
+}

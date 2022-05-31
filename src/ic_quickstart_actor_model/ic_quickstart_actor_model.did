@@ -1,0 +1,49 @@
+type ColonyInfo = record {
+  player_count : nat64;
+  taxes_percent : nat8;
+  canister_id : principal;
+  generation : nat8;
+  coffers : Inventory;
+  expeditions_count : nat64;
+  rewards_per_second : vec record { Resources; nat8 };
+};
+type ExpeditionState = record {
+  id : nat64;
+  members : vec principal;
+  step : ExpeditionStep;
+  resources_required : vec record { Resources; nat64 };
+  proposed_at : nat64;
+  proposed_by : principal;
+  resources_pool : Inventory;
+};
+type ExpeditionStep = variant {
+  Started : principal;
+  Starting : nat64;
+  Done;
+  Ready;
+  Proposed;
+};
+type Inventory = record {
+  contents : vec record { Resources; nat64 };
+  size : nat32;
+};
+type Resources = variant { Stone; Food; Gold; Wood; Water };
+type Result = variant { Ok; Err : text };
+type Result_1 = variant { Ok : vec record { Resources; nat64 }; Err : text };
+service : {
+  addPlayerToWorld : () -> (Result);
+  demoAddResourcesToExpedition : () -> (Result);
+  expeditionNext : (nat64) -> (Result);
+  getColonyInfo : () -> (ColonyInfo) query;
+  getExpeditions : () -> (vec record { nat64; ExpeditionState }) query;
+  getPlayerInventory : () -> (Inventory) query;
+  getRemoteColonies : () -> (vec principal) query;
+  getUnclaimedWork : () -> (Result_1) query;
+  greet : (text) -> (text) query;
+  isPlayerHere : () -> (bool) query;
+  joinExpedition : (nat64) -> (Result);
+  startExpedition : () -> (Result);
+  startWork : () -> (Result);
+  stopWork : () -> (Result);
+  wasm_sha256 : () -> (text) query;
+}

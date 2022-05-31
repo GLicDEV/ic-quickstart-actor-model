@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/ic_quickstart_actor_model",
+    "src/wasm_loader"
+]
